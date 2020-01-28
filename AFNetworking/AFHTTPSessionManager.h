@@ -254,6 +254,14 @@ NS_ASSUME_NONNULL_BEGIN
                                 success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                 failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
 
+
+- (NSURLSessionDataTask *)POST:(NSString *)URLString
+                    parameters:(id)parameters
+                      uploadProgress:(void (^)(NSProgress * _Nonnull))uploadProgress
+                      downloadProgress:(void (^)(NSProgress * _Nonnull))downloadProgress
+                       success:(void (^)(NSURLSessionDataTask * _Nonnull, id _Nullable))success
+                       failure:(void (^)(NSURLSessionDataTask * _Nullable, NSError * _Nonnull))failure;
+
 /**
  Creates and runs an `NSURLSessionDataTask` with a `PUT` request.
 
