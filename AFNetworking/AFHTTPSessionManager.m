@@ -235,6 +235,20 @@
 
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
                     parameters:(id)parameters
+                      uploadProgress:(void (^)(NSProgress * _Nonnull))uploadProgress
+                      downloadProgress:(void (^)(NSProgress * _Nonnull))downloadProgress
+                       success:(void (^)(NSURLSessionDataTask * _Nonnull, id _Nullable))success
+                       failure:(void (^)(NSURLSessionDataTask * _Nullable, NSError * _Nonnull))failure
+{
+    NSURLSessionDataTask *dataTask = [self dataTaskWithHTTPMethod:@"POST" URLString:URLString parameters:parameters uploadProgress:uploadProgress downloadProgress:downloadProgress success:success failure:failure];
+    
+    [dataTask resume];
+    
+    return dataTask;
+}
+
+- (NSURLSessionDataTask *)POST:(NSString *)URLString
+                    parameters:(id)parameters
                        headers:(NSDictionary<NSString *,NSString *> *)headers
      constructingBodyWithBlock:(void (^)(id<AFMultipartFormData> _Nonnull))block
                       progress:(void (^)(NSProgress * _Nonnull))uploadProgress
